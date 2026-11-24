@@ -158,7 +158,7 @@ export default function Pricing() {
               }`}
             >
               {trialActivated || hasPro
-                ? "✓ Pro Membership Active"
+                ? "Pro Membership Active"
                 : "Start 5-day free trial"}
             </button>
           </div>

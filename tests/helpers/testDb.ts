@@ -20,7 +20,7 @@ export type TestDb = Awaited<ReturnType<typeof createTestDb>>["db"];
 export async function resetData(db: TestDb) {
   await db.execute(
     sql.raw(
-      `TRUNCATE TABLE "users", "courses", "courseChapters", "enrollCourse", "completedExercise", "exercise", "aiHintUsage" RESTART IDENTITY CASCADE`
+      `TRUNCATE TABLE "users", "courses", "courseChapters", "enrollCourse", "completedExercise", "exercise" RESTART IDENTITY CASCADE`
     )
   );
 }

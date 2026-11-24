@@ -1,12 +1,9 @@
 import { describe, expect, it } from "vitest";
 import {
-  MAX_HINT_FILES,
-  MAX_HINT_FILE_CHARS,
-  MAX_HINT_TOTAL_CHARS,
+  MAX_FILE_CHARS,
   completeBody,
   enrollBody,
   exerciseBody,
-  hintBody,
 } from "./schemas";
 
 describe("enrollBody", () => {
@@ -51,28 +48,15 @@ describe("completeBody", () => {
   });
 });
 
-describe("hintBody", () => {
+describe("completeBody files", () => {
   const base = { courseId: 4, chapterId: 1, exerciseId: 1 };
 
-  it("accepts a small set of files", () => {
-    expect(hintBody.safeParse({ ...base, files: { "/App.jsx": "code" } }).success).toBe(true);
-  });
-
-  it("rejects no files and too many files", () => {
-    expect(hintBody.safeParse({ ...base, files: {} }).success).toBe(false);
-    const many = Object.fromEntries(Array.from({ length: MAX_HINT_FILES + 1 }, (_, i) => [`/f${i}.js`, "x"]));
-    expect(hintBody.safeParse({ ...base, files: many }).success).toBe(false);
+  it("accepts submitted files", () => {
+    expect(completeBody.safeParse({ ...base, files: { "/App.jsx": "code" } }).success).toBe(true);
   });
 
   it("rejects a file that is too long", () => {
-    const files = { "/App.jsx": "x".repeat(MAX_HINT_FILE_CHARS + 1) };
-    expect(hintBody.safeParse({ ...base, files }).success).toBe(false);
-  });
-
-  it("rejects when all files together are too long", () => {
-    const per = MAX_HINT_FILE_CHARS;
-    const count = Math.ceil(MAX_HINT_TOTAL_CHARS / per) + 1;
-    const files = Object.fromEntries(Array.from({ length: count }, (_, i) => [`/f${i}.js`, "x".repeat(per)]));
-    expect(hintBody.safeParse({ ...base, files }).success).toBe(false);
+    const files = { "/App.jsx": "x".repeat(MAX_FILE_CHARS + 1) };
+    expect(completeBody.safeParse({ ...base, files }).success).toBe(false);
   });
 });

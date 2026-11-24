@@ -105,10 +105,10 @@ export default function ContactPage() {
                 <div>
                   <p className="font-game text-lg text-gray-400">Operating Hours</p>
                   <p className="font-sans text-neutral-300">
-                    Monday – Friday: 09:00 – 18:00 UTC
+                    Monday - Friday: 09:00 - 18:00 UTC
                   </p>
                   <p className="font-sans text-xs text-emerald-400">
-                    ● Automated Exercise Verifier: 24/7 Active
+                    Automated Exercise Verifier: 24/7 Active
                   </p>
                 </div>
               </div>

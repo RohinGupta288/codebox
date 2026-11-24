@@ -29,7 +29,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "CodeBox | Learn to code by building",
   description:
-    "Beginner-friendly coding courses with an in-browser editor, XP and AI hints.",
+    "Beginner-friendly coding courses with an in-browser editor, live preview and XP.",
 };
 
 export default function RootLayout({

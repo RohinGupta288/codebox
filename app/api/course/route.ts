@@ -77,7 +77,7 @@ export async function GET(req: NextRequest) {
     });
   } else if (courseId == "enrolled") {
     //Get User Enrolled Courses Only
-    // 1️⃣ Fetch all enrolled courses for the user
+    // 1. Fetch all enrolled courses for the user
     const enrolledCourses = await db
       .select()
       .from(EnrolledCourseTable)
@@ -96,14 +96,14 @@ export async function GET(req: NextRequest) {
       return NextResponse.json([]);
     }
 
-    // 2️⃣ Fetch all course details in one go
+    // 2. Fetch all course details in one go
     const courses = await db
       .select()
       .from(CourseTable)
       // `@ts-ignore`
       .where(inArray(CourseTable.CourseId, courseIds));
 
-    // 3️⃣ Fetch chapters for all courses
+    // 3. Fetch chapters for all courses
     const chapters = await db
       .select()
       .from(CourseChaptersTable)
@@ -111,7 +111,7 @@ export async function GET(req: NextRequest) {
       .where(inArray(CourseChaptersTable.courseId, courseIds))
       .orderBy(asc(CourseChaptersTable.chapterId));
 
-    // 4️⃣ Fetch completed exercises for all courses
+    // 4. Fetch completed exercises for all courses
     const completed = await db
       .select()
       .from(CompletedExerciseTable)
@@ -143,7 +143,7 @@ export async function GET(req: NextRequest) {
       };
     });
 
-    // ⭐ Format output
+    // 5. Format output
     const formattedResult = finalResult.map((item) => {
       // Count total exercises by summing exercises arrays in all chapters
       const totalExercises = item.chapters.reduce((acc, chapter) => {

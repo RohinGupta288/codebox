@@ -44,7 +44,7 @@ function CourseDetail() {
       <div className="min-h-[60vh] flex flex-col items-center justify-center p-6 text-center font-game">
         <h2 className="text-3xl text-yellow-400 mb-4">{error}</h2>
         <a href="/courses" className="text-xl underline text-gray-300 hover:text-white">
-          ← Back to All Courses
+          &lt; Back to All Courses
         </a>
       </div>
     );

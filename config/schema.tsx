@@ -88,15 +88,3 @@ export const ExerciseTable = pgTable(
   },
   (t) => [unique("exercise_course_slug_unique").on(t.courseId, t.exerciseId)]
 );
-
-// One row per user per UTC day. Used to cap AI hint requests atomically.
-export const AiHintUsageTable = pgTable(
-  "aiHintUsage",
-  {
-    id: integer().primaryKey().generatedAlwaysAsIdentity(),
-    userId: varchar().notNull(),
-    day: varchar({ length: 10 }).notNull(),
-    count: integer().notNull().default(0),
-  },
-  (t) => [unique("ai_hint_usage_user_day_unique").on(t.userId, t.day)]
-);
